@@ -1,6 +1,21 @@
 import React from 'react';
+import Redux from 'redux';
+import { connect } from 'react-redux';
+
+import {
+         REMOVE_OPEN,
+         removeOpen,
+         FAVORITE,
+         favorite
+       } from '../actions';
+
+const mapStateToProps = (state) => {
+  return {};
+}
 
 function ActiveTodo(props) {
+  const { dispatch } = props;
+
   return (
            <div className="saved-todo">
              <h4>Activity: { props.activity }</h4>
@@ -12,14 +27,20 @@ function ActiveTodo(props) {
              </span>
              <p>Key: { props.id }</p>
              <p>Accessibility rating: { props.accessibility }</p>
-             <div className="remove">
+             <button 
+               className="remove"
+               onClick={() => dispatch(removeOpen(props.id))}
+             >
                Remove
-             </div>
-             <div className="favorite">
+             </button>
+             <button 
+               className="favorite"
+               onClick={() => dispatch(favorite(props.id))}
+             >
                Favorite
-             </div>
+             </button>
            </div>
          );
 }
 
-export default ActiveTodo;
+export default connect(mapStateToProps)(ActiveTodo);

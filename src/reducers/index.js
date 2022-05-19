@@ -89,9 +89,9 @@ const reducer = (state = initialState, action) => {
                currentTodos: [...state.currentTodos, action.payload],
              }
     case REMOVE_OPEN:
-      return { ...state, currentTodos: state.currentTodos.filter(x.id !== action.payload) };
+      return { ...state, currentTodos: state.currentTodos.filter(x => x.key !== action.payload) };
     case FAVORITE:
-      let focusTodo = state.currentTodos.filter(x => x.id === action.payload)[0];
+      let focusTodo = state.currentTodos.filter(x => x.key === action.payload)[0];
       return {
                ...state,
                savedTodos: state.savedTodos.concat(focusTodo),

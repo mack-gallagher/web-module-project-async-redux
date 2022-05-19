@@ -5,6 +5,7 @@ import Redux from 'redux';
 import { connect } from 'react-redux';
 
 import ActiveTodo from './ActiveTodo.js';
+import SavedTodo from './SavedTodo.js';
 import reducer from '../reducers';
 
 import {
@@ -61,6 +62,22 @@ function App(props) {
       </section>
       <section className="favorites-sidebar">
         <h3>Favorites</h3>
+        <div className="favorites-container">
+          {
+            savedTodos.map((x,idx) => {
+              return <SavedTodo
+                       activity={x.activity}
+                       type={x.type}
+                       participants={x.participants}
+                       price={x.price}
+                       link={x.link}
+                       id={x.key}
+                       key={idx}
+                       accessibility={x.accessibility}
+                     />
+            })
+          }
+        </div>
       </section>
     </div>
   );

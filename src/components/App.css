@@ -76,3 +76,9 @@ section.favorites-sidebar {
   display: flex;
   flex-wrap: wrap;
 }
+
+.favorites-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

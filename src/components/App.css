@@ -82,3 +82,11 @@ section.favorites-sidebar {
   flex-direction: column;
   align-items: center;
 }
+
+.favorited {
+  background-color: yellow;
+}
+
+.checked {
+  background-color: blue;
+}

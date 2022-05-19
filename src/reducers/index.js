@@ -91,7 +91,11 @@ const reducer = (state = initialState, action) => {
     case REMOVE_OPEN:
       return { ...state, currentTodos: state.currentTodos.filter(x => x.key !== action.payload) };
     case FAVORITE:
-      let focusTodo = state.currentTodos.filter(x => x.key === action.payload)[0];
+      let focusTodo = {
+                        ...state.currentTodos.filter(x => x.key === action.payload)[0],
+                        favorited: false,
+                        checked: false,
+                      }
       return {
                ...state,
                savedTodos: state.savedTodos.concat(focusTodo),
@@ -102,28 +106,28 @@ const reducer = (state = initialState, action) => {
                savedTodos: state.savedTodos.filter(x => x.checked !== true),
              }
     case TOGGLE_FAVORITE:
-      focusTodo = state.savedTodos.filter(x => x.id === action.payload)[0];
+      let favoriteTodo = state.savedTodos.filter(x => x.key === action.payload)[0];
       return {
                ...state, 
                savedTodos:
                  [
-                   ...state.savedTodos,
+                   ...state.savedTodos.filter(x => x.key !== action.payload),
                    {
-                     ...focusTodo,
-                     favorited: !focusTodo.favorited, 
+                     ...favoriteTodo,
+                     favorited: !favoriteTodo.favorited, 
                    },
                  ],
              };
     case TOGGLE_CHECKED:
-       focusTodo = state.savedTodos.filter(x => x.id === action.paylod)[0];
+       let checkTodo = state.savedTodos.filter(x => x.key === action.payload)[0];
        return {
                 ...state,
                 savedTodos:
                   [
-                    ...state.savedTodos,
+                    ...state.savedTodos.filter(x => x.key !== action.payload),
                     {
-                      ...focusTodo,
-                      checked: !focusTodo.checked,
+                      ...checkTodo,
+                      checked: !checkTodo.checked,
                     },
                   ],
               };

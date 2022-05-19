@@ -2,7 +2,18 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
+import {
+         TOGGLE_FAVORITE,
+         toggleFavorite,
+         TOGGLE_CHECKED,
+         toggleChecked
+       } from '../actions';
+
 function SavedTodo(props) {
+
+  const { dispatch } = props;
+  console.log(props.favorited);
+
   return (
            <div className="saved-todo">
              <h4>Activity: { props.activity }</h4>
@@ -12,16 +23,22 @@ function SavedTodo(props) {
                <p>Link: </p>
                { props.link?<a href={ props.link }>{ props.link }</a>:<p>None</p> }
              </span>
-             <p>Key: { props.key }</p>
+             <p>Key: { props.id }</p>
              <p>Accessibility rating: { props.accessibility }</p>
-             <div className={ "star" + props.favorited?" favorited":"" }>
-               x
-             </div>
-             <div className={ "checkbox" + props.checked?" checked":"" }>
-               o
-             </div>
+             <button 
+               className={ props.favorited?"favorited":"" }
+               onClick={() => dispatch(toggleFavorite(props.id))}
+             >
+               Favorite
+             </button>
+             <button 
+               className={ props.checked?"checked":"" }
+               onClick={() => dispatch(toggleChecked(props.id))}
+             >
+               Check
+             </button>
            </div>
          )
 }
 
-export default SavedTodo;
+export default connect(null)(SavedTodo);

@@ -25,7 +25,10 @@ export const getNew = () => dispatch => {
   dispatch({ type: GET_NEW_START });
   axios.get('https://www.boredapi.com/api/activity')
     .then(res => {
-      dispatch({ type: GET_NEW_SUCCESS, payload: res.data });
+      dispatch({ 
+                 type: GET_NEW_SUCCESS,
+                 payload: res.data,
+               });
     })
     .catch(err => {
       console.error(err);

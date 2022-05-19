@@ -12,6 +12,8 @@ import {
          getNew,
          CLEAR_OPEN,
          clearOpen,
+         CLEAR_CHECKED,
+         clearChecked,
        } from '../actions';
 
 const mapStateToProps = (state) => {
@@ -73,10 +75,17 @@ function App(props) {
                        link={x.link}
                        id={x.key}
                        key={idx}
+                       favorited={x.favorited}
+                       checked={x.checked}
                        accessibility={x.accessibility}
                      />
             })
           }
+          <button
+            onClick={() => dispatch(clearChecked())}
+          >
+            Clear Checked Todos
+          </button>
         </div>
       </section>
     </div>

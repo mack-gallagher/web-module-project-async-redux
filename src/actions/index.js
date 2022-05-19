@@ -1,5 +1,14 @@
+import Redux from 'redux';
+import { connect } from 'react-redux';
+
+import axios from 'axios';
+
 export const CLEAR_OPEN = "CLEAR_OPEN";
-export const GET_NEW = "GET_NEW";
+
+export const GET_NEW_START = "GET_NEW_START";
+export const GET_NEW_SUCCESS = 'GET_NEW_SUCCESS';
+export const GET_NEW_FAILURE = "GET_NEW_FAILURE";
+
 export const REMOVE_OPEN = "REMOVE_OPEN";
 export const FAVORITE = "FAVORITE";
 export const CLEAR_CHECKED = "CLEAR_CHECKED";
@@ -12,11 +21,15 @@ export const clearOpen = () => {
          }
 }
 
-export const getNew = (item) => { /* this should not be happening here? */
-  return {
-           type: GET_NEW,
-           payload: item,
-         }
+export const getNew = () => dispatch => {
+  dispatch({ type: GET_NEW_START });
+  axios.get('https://www.boredapi.com/api/activity')
+    .then(res => {
+      dispatch({ type: GET_NEW_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.error(err);
+    });
 }
 
 export const removeOpen = (id) => {

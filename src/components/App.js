@@ -7,6 +7,12 @@ import { connect } from 'react-redux';
 import ActiveTodo from './ActiveTodo.js';
 import reducer from '../reducers';
 
+import {
+         getNew,
+         CLEAR_OPEN,
+         clearOpen,
+       } from '../actions';
+
 const mapStateToProps = (state) => {
   return {
            currentTodos: state.currentTodos,
@@ -16,7 +22,7 @@ const mapStateToProps = (state) => {
 
 function App(props) {
 
-  const { currentTodos, savedTodos } = props;
+  const { currentTodos, savedTodos, dispatch } = props;
 
   return (
     <div className="App">
@@ -24,7 +30,7 @@ function App(props) {
         <h1>My Saved Todos</h1>
         <div className="active-todos-container">
           {
-             currentTodos.map(x => {
+             currentTodos.map((x,idx) => {
                return (
                  <ActiveTodo
                    activity={x.activity}
@@ -32,15 +38,25 @@ function App(props) {
                    participants={x.participants}
                    price={x.price}
                    link={x.link}
-                   key={x.key}
+                   id={x.key}
+                   key={idx}
                    accessibility={x.accessibility}
                  />
                );
              })
           }
         </div>
-        <button className="generator-button">
+        <button
+          className="generator-button"
+          onClick={() => dispatch(getNew())} 
+        >
           Generate Todo
+        </button>
+        <button
+          className="clear-button"
+          onClick={() => dispatch(clearOpen()) }
+        >
+          Clear Active Todos
         </button>
       </section>
       <section className="favorites-sidebar">

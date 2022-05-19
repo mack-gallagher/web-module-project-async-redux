@@ -1,7 +1,9 @@
 import {
          CLEAR_OPEN,
          clearOpen,
-         GET_NEW,
+         GET_NEW_START,
+         GET_NEW_SUCCESS,
+         GET_NEW_FAILURE,
          getNew,
          REMOVE_OPEN,
          removeOpen, 
@@ -65,14 +67,27 @@ const initialState = {
                 ],
   savedTodos: [
               ],
+  areGetting: false,
+  error: '',
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case CLEAR_OPEN:
       return { ...state, currentTodos: [], };
-    case GET_NEW:
-      return { ...state, currentTodos: state.currentTodos.concat(action.payload) };
+    case GET_NEW_START:
+      return { 
+               ...state,
+               error: '',
+               areGetting: true,
+             };
+    case GET_NEW_SUCCESS:
+      return {
+               ...state,
+               error: '',
+               areGetting: false,
+               currentTodos: [...state.currentTodos, action.payload],
+             }
     case REMOVE_OPEN:
       return { ...state, currentTodos: state.currentTodos.filter(x.id !== action.payload) };
     case FAVORITE:

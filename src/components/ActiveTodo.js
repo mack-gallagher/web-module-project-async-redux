@@ -10,7 +10,7 @@ function ActiveTodo(props) {
                <p>Link: </p>
                { props.link?<a href={ props.link }>{ props.link }</a>:<p>None</p> }
              </span>
-             <p>Key: { props.key }</p>
+             <p>Key: { props.id }</p>
              <p>Accessibility rating: { props.accessibility }</p>
              <div className="remove">
                Remove

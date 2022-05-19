@@ -30,7 +30,7 @@ function App(props) {
   return (
     <div className="App">
       <section className="main-body">
-        <h1>My Saved Todos</h1>
+        <h1>My Todos</h1>
         <div className="active-todos-container">
           {
              currentTodos.map((x,idx) => {
@@ -63,7 +63,7 @@ function App(props) {
         </button>
       </section>
       <section className="favorites-sidebar">
-        <h3>Favorites</h3>
+        <h3>Saved</h3>
         <div className="favorites-container">
           {
             savedTodos.map((x,idx) => {

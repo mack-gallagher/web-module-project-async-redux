@@ -37,7 +37,7 @@ function ActiveTodo(props) {
                className="favorite"
                onClick={() => dispatch(favorite(props.id))}
              >
-               Favorite
+               Save
              </button>
            </div>
          );

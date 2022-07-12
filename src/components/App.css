@@ -149,6 +149,7 @@ button {
 
 a {
   height: 1rem;
+  color: rgb(100,100,100);
 }
 
 p {
@@ -167,3 +168,4 @@ p {
 span {
   margin: 5% 0 5% 5%;
 }
+

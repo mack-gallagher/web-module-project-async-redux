@@ -36,7 +36,7 @@ REMEMBER: THE DATA WE GET FROM THE API WILL HAVE THIS SHAPE:
 
 
 const initialState = {
-  currentTodos: [
+  currentPlans: [
                   {
                     "activity" : "Learn about a distributed version control system such as Git",
                     "type" : "education",
@@ -65,7 +65,7 @@ const initialState = {
                     "accessibility": 0.3
                   },
                 ],
-  savedTodos: [
+  savedPlans: [
               ],
   areGetting: false,
   error: '',
@@ -74,7 +74,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case CLEAR_OPEN:
-      return { ...state, currentTodos: [], };
+      return { ...state, currentPlans: [], };
     case GET_NEW_START:
       return { 
                ...state,
@@ -86,48 +86,48 @@ const reducer = (state = initialState, action) => {
                ...state,
                error: '',
                areGetting: false,
-               currentTodos: [...state.currentTodos, action.payload],
+               currentPlans: [...state.currentPlans, action.payload],
              }
     case REMOVE_OPEN:
-      return { ...state, currentTodos: state.currentTodos.filter(x => x.key !== action.payload) };
+      return { ...state, currentPlans: state.currentPlans.filter(x => x.key !== action.payload) };
     case FAVORITE:
-      let focusTodo = {
-                        ...state.currentTodos.filter(x => x.key === action.payload)[0],
+      let focusPlan = {
+                        ...state.currentPlans.filter(x => x.key === action.payload)[0],
                         favorited: false,
                         checked: false,
                       }
       return {
                ...state,
-               savedTodos: state.savedTodos.concat(focusTodo),
+               savedPlans: state.savedPlans.concat(focusPlan),
              };
     case CLEAR_CHECKED:
       return {
                ...state,
-               savedTodos: state.savedTodos.filter(x => x.checked !== true),
+               savedPlans: state.savedPlans.filter(x => x.checked !== true),
              }
     case TOGGLE_FAVORITE:
-      let favoriteTodo = state.savedTodos.filter(x => x.key === action.payload)[0];
+      let favoritePlan = state.savedPlans.filter(x => x.key === action.payload)[0];
       return {
                ...state, 
-               savedTodos:
+               savedPlans:
                  [
-                   ...state.savedTodos.filter(x => x.key !== action.payload),
+                   ...state.savedPlans.filter(x => x.key !== action.payload),
                    {
-                     ...favoriteTodo,
-                     favorited: !favoriteTodo.favorited, 
+                     ...favoritePlan,
+                     favorited: !favoritePlan.favorited, 
                    },
                  ],
              };
     case TOGGLE_CHECKED:
-       let checkTodo = state.savedTodos.filter(x => x.key === action.payload)[0];
+       let checkPlan = state.savedPlans.filter(x => x.key === action.payload)[0];
        return {
                 ...state,
-                savedTodos:
+                savedPlans:
                   [
-                    ...state.savedTodos.filter(x => x.key !== action.payload),
+                    ...state.savedPlans.filter(x => x.key !== action.payload),
                     {
-                      ...checkTodo,
-                      checked: !checkTodo.checked,
+                      ...checkPlan,
+                      checked: !checkPlan.checked,
                     },
                   ],
               };

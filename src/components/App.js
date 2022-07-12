@@ -4,8 +4,8 @@ import './App.css';
 import Redux from 'redux';
 import { connect } from 'react-redux';
 
-import ActiveTodo from './ActiveTodo.js';
-import SavedTodo from './SavedTodo.js';
+import ActivePlan from './ActivePlan.js';
+import SavedPlan from './SavedPlan.js';
 import reducer from '../reducers';
 
 import {
@@ -18,24 +18,24 @@ import {
 
 const mapStateToProps = (state) => {
   return {
-           currentTodos: state.currentTodos,
-           savedTodos: state.savedTodos,
+           currentPlans: state.currentPlans,
+           savedPlans: state.savedPlans,
          };
 }
 
 function App(props) {
 
-  const { currentTodos, savedTodos, dispatch } = props;
+  const { currentPlans, savedPlans, dispatch } = props;
 
   return (
     <div className="App">
       <section className="main-body">
-        <h1>My Todos</h1>
+        <h1>Generate a boredom-busting plan!</h1>
         <div className="active-todos-container">
           {
-             currentTodos.map((x,idx) => {
+             currentPlans.map((x,idx) => {
                return (
-                 <ActiveTodo
+                 <ActivePlan
                    activity={x.activity}
                    type={x.type}
                    participants={x.participants}
@@ -53,21 +53,21 @@ function App(props) {
           className="generator-button"
           onClick={() => dispatch(getNew())} 
         >
-          Generate Todo
+          Generate Plan
         </button>
         <button
           className="clear-button"
           onClick={() => dispatch(clearOpen()) }
         >
-          Clear Active Todos
+          Clear Active Plans
         </button>
       </section>
       <section className="favorites-sidebar">
         <h3>Saved</h3>
         <div className="favorites-container">
           {
-            savedTodos.map((x,idx) => {
-              return <SavedTodo
+            savedPlans.map((x,idx) => {
+              return <SavedPlan
                        activity={x.activity}
                        type={x.type}
                        participants={x.participants}
@@ -84,7 +84,7 @@ function App(props) {
           <button
             onClick={() => dispatch(clearChecked())}
           >
-            Clear Checked Todos
+            Clear Checked Plans
           </button>
         </div>
       </section>

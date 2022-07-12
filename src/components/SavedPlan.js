@@ -9,22 +9,18 @@ import {
          toggleChecked
        } from '../actions';
 
-function SavedTodo(props) {
+function SavedPlan(props) {
 
   const { dispatch } = props;
   console.log(props.favorited);
 
   return (
            <div className="saved-todo">
-             <h4>Activity: { props.activity }</h4>
-             <p>Participants: { props.participants }</p>
-             <p>Price: { props.price }</p>
+             <h4>{ props.activity }</h4>
              <span>
                <p>Link: </p>
                { props.link?<a href={ props.link }>{ props.link }</a>:<p>None</p> }
              </span>
-             <p>Key: { props.id }</p>
-             <p>Accessibility rating: { props.accessibility }</p>
              <button 
                className={ props.favorited?"favorited":"" }
                onClick={() => dispatch(toggleFavorite(props.id))}
@@ -41,4 +37,4 @@ function SavedTodo(props) {
          )
 }
 
-export default connect(null)(SavedTodo);
+export default connect(null)(SavedPlan);

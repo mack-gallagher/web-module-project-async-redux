@@ -16,7 +16,7 @@ function SavedPlan(props) {
 
   return (
            <div className="saved-todo">
-             <h4>{ props.activity }</h4>
+             <h4>{ props.activity+'!' }</h4>
              <span>
                <p>Link: </p>
                { props.link?<a href={ props.link }>{ props.link }</a>:<p>None</p> }

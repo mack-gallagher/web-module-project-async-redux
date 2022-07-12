@@ -19,7 +19,7 @@ function ActivePlan(props) {
   return (
            <div className="saved-todo">
              <div className="active-info">
-               <h4>{ props.activity }</h4>
+               <h4>{ props.activity+'!' }</h4>
                <span>
                  Link:
                  { ' ' }

@@ -35,7 +35,6 @@
     "@testing-library/user-event": "13.5.0",
     "axios": "0.24.0",
     "cors": "2.8.5",
-    "create-react-app": "^5.0.1",
     "css-loader": "^6.5.1",
     "express": "4.17.1",
     "jest-dom": "4.0.0",

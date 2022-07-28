@@ -8,6 +8,14 @@ A utility allowing users to interface with the Bored API [https://www.boredapi.c
 
 Should currently be bug-free; if you find a bug, please message me on GitHub!
 
+## Technologies Used
+
+- HTML
+- CSS
+- React for display of UI components
+- Redux to manage state of React application
+- axios for API interaction
+
 ## Usage
 
 You should start out with an empty list. To add a random To-Do item to your list of plans, click 'Generate New Todo'. You should see a random item from the Bored API appear in the center of the window.
